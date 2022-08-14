@@ -18,7 +18,7 @@ function compareResult(response) {
     if (alreadyLoaded) {
         $(grid_selector).GridUnload();
     }
-    if (response.firstSummary.unmatched != 0 || response.secondSummary.unmatched != 0) {
+    if (response.unmatchedRecords && response.unmatchedRecords.length != 0) {
         jQuery(grid_selector).jqGrid({
             datatype: "local",
             data: response.unmatchedRecords,
@@ -88,8 +88,15 @@ $(window).bind('resize', function () {
 }).trigger('resize');
 
 $(document).ready(function () {
-    $("#summary").hide()
+    $("#summary").hide();
     $("#but_upload").click(function () {
+        var similarityFields =  [];
+        $("#container > input").each(function(obj){
+            if ($(this).is(':checked')) {
+                similarityFields.push($(this).val());
+            }
+
+        });
         var fd = new FormData();
         var file1 = $('#firstFile')[0].files;
         var file2 = $('#secondFile')[0].files;
@@ -98,7 +105,7 @@ $(document).ready(function () {
         if (file1.length > 0 && file2.length > 0) {
             fd.append('firstFile', file1[0]);
             fd.append('secondFile', file2[0]);
-
+            fd.append("similarity-fields", similarityFields)
             $.ajax({
                 url: '/compare',
                 type: 'post',
@@ -117,6 +124,32 @@ $(document).ready(function () {
         } else {
             alert("Please select a file.");
         }
+    });
+    $.get("/field-matchers", function (data) {
+        data.forEach(function (obj) {
+            $('#container').append(
+                $(document.createElement('input')).prop({
+                    id: obj.id,
+                    value: obj.id,
+                    name: obj.description,
+                    type: 'checkbox',
+                    checked: true
+                })
+            ).append(
+                $(document.createElement('label')).prop({
+                    for: obj.id
+                }).html(obj.description)
+            );
+        });
+    });
+
+
+
+});
+
+$(window).on('load', function() {
+    $("#container > input").checkboxradio({
+        icon: false
     });
 });
 

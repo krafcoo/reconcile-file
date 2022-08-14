@@ -23,9 +23,13 @@ public class ComparisonService {
         this.similarityMatchingStrategy = similarityMatchingStrategy;
     }
 
-    public ComparisonResult compare(String firstFileName, List<Transaction> firstTxns, String secondFileName, List<Transaction> secondTxns) {
+    public ComparisonResult compare(String firstFileName,
+                                    List<Transaction> firstTxns,
+                                    String secondFileName,
+                                    List<Transaction> secondTxns,
+                                    List<String> similarityFields) {
         final MatchingResult equalityResult = identicalMatching.compare(firstTxns, secondTxns);
-        final MatchingResult similarityResult = similarityMatchingStrategy.compare(equalityResult.getNotMatched1(), equalityResult.getNotMatched2());
+        final MatchingResult similarityResult = similarityMatchingStrategy.compare(equalityResult.getNotMatched1(), equalityResult.getNotMatched2(), similarityFields);
 
         final FileComparisonSummary fileComparisonSummary1 = FileComparisonSummary.builder()
                 .fileName(firstFileName)

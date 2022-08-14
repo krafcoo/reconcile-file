@@ -3,6 +3,7 @@ package recon.matching;
 import org.junit.jupiter.api.Test;
 import recon.model.Transaction;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,7 +11,51 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SimilarityMatchingStrategyTest {
 
-    SimilarityMatchingStrategy similarityMatchingStrategy = new SimilarityMatchingStrategy();
+    SimilarityMatchingStrategy similarityMatchingStrategy = new SimilarityMatchingStrategy(Arrays.asList(new NarrativeMatcher(), new AmountMatcher()));
+
+    @Test
+    void compare_similar_amount_narative() {
+        final MatchingResult matchingResult = similarityMatchingStrategy.compare(
+                Arrays.asList(Transaction.builder().narrative("this is simple test").amount("1000").build()),
+                Arrays.asList(Transaction.builder().narrative("this is simple text").amount("1000").build()),
+                Arrays.asList("narrative", "amount"));
+        assertNotNull(matchingResult);
+        assertEquals(1, matchingResult.getMatched1().size());
+        assertEquals(1, matchingResult.getMatched2().size());
+    }
+
+    @Test
+    void compare_similar_narrative() {
+        final MatchingResult matchingResult = similarityMatchingStrategy.compare(
+                Arrays.asList(Transaction.builder().narrative("this is simple test").amount("1000").build()),
+                Arrays.asList(Transaction.builder().narrative("this is simple text").amount("1000").build()),
+                Arrays.asList("narrative"));
+        assertNotNull(matchingResult);
+        assertEquals(1, matchingResult.getMatched1().size());
+        assertEquals(1, matchingResult.getMatched2().size());
+    }
+
+    @Test
+    void compare_not_similar_narrative() {
+        final MatchingResult matchingResult = similarityMatchingStrategy.compare(
+                Arrays.asList(Transaction.builder().narrative("other").amount("1000").build()),
+                Arrays.asList(Transaction.builder().narrative("this is simple text").amount("1000").build()),
+                Arrays.asList("narrative"));
+        assertNotNull(matchingResult);
+        assertEquals(0, matchingResult.getMatched1().size());
+        assertEquals(0, matchingResult.getMatched2().size());
+    }
+
+    @Test
+    void compare_not_similar_narrativeNo_AmountYes() {
+        final MatchingResult matchingResult = similarityMatchingStrategy.compare(
+                Arrays.asList(Transaction.builder().narrative("other").amount("1000").build()),
+                Arrays.asList(Transaction.builder().narrative("this is simple text").amount("1000").build()),
+                Arrays.asList("narrative", "amount"));
+        assertNotNull(matchingResult);
+        assertEquals(0, matchingResult.getMatched1().size());
+        assertEquals(0, matchingResult.getMatched2().size());
+    }
 
     @Test
     void compare_similar() {
@@ -25,7 +70,7 @@ class SimilarityMatchingStrategyTest {
         right.add(Transaction.fromLine("Card Campaign,2014-01-12 07:50:22,-20000,*BDF THEBEPHATSWA         MOLEPOLOLE    BW,DEDUCT,0304012282224503,1,P_NzUyODU4ODJfMTM4NjMyODY5Ni4wNzky"));
         right.add(Transaction.fromLine("Card Campaign,2014-01-12 07:50:22,-20001,*MOGODI ENGEN            GABORONE       BW,DEDUCT,0111111111111111,1,P_NzUyODU4ODJfMTM4NjMyODY5Ni4wNzky"));
 
-        final MatchingResult matchingResult = similarityMatchingStrategy.compare(left, right);
+        final MatchingResult matchingResult = similarityMatchingStrategy.compare(left, right, Arrays.asList("narrative", "amount"));
         assertNotNull(matchingResult);
         assertEquals(3, matchingResult.getMatched1().size());
         assertEquals(3, matchingResult.getMatched2().size());

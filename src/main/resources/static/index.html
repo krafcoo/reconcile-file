@@ -4,6 +4,7 @@
         Compare reconciliation files
     </title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <link rel="stylesheet" type="text/css" media="screen" href="jquery-ui.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="ui.jqgrid.css"/>
     <style>
@@ -46,7 +47,7 @@
             margin-bottom: 10px;
             background-color: #e9e9e9;
             border-radius: 3px;
-            border:1px solid #c5c5c5;
+            border: 1px solid #c5c5c5;
             outline: thin solid #c5c5c5
         }
 
@@ -57,6 +58,12 @@
             text-align: right;
         }
 
+        #similarityMatchers {
+            width: min-content;
+        }
+        .new-select {
+            display: inline-block;
+        }
         .ui-controlgroup-vertical {
             width: 150px;
             border-radius: 3px;
@@ -70,9 +77,11 @@
         .ui-controlgroup.ui-controlgroup-vertical > .ui-controlgroup-span {
             text-align: center;
         }
+
         .controlgroup-vertical {
             width: 100%
         }
+
         #summary {
             display: none;
         }
@@ -81,8 +90,6 @@
     <script type="module" src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
     <script src="jquery.twbsPagination.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.5/js/jquery.jqgrid.min.js"></script>
 
@@ -93,7 +100,6 @@
 <div>
 
     <div id="form" style="width: 80%; margin: 0 auto; display: block;">
-        <!--        <form method="post" action="/" enctype="multipart/form-data" id="uploadForm" style="border: solid">-->
         <fieldset>
             <legend>Select files to compare</legend>
             <div class="controlgroup-vertical" style="width:100%">
@@ -108,6 +114,15 @@
                         <td><input type="file" id="secondFile" name="secondFile" value="c1.csv"/></td>
                         <td></td>
                     </tr>
+
+                    <tr>
+                        <td>Select similarity matching fields:</td>
+                        <td colspan="2" style="text-align: left">
+                            <div id="container">
+
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="3" style="text-align: right"><input type="button" value="Compare"
                                                                          id="but_upload"></td>
@@ -115,9 +130,8 @@
                 </table>
             </div>
         </fieldset>
-        <!--        </form>-->
     </div>
-<br/>
+    <br/>
 
     <div id="summary">
         <table style="width: 100%">
@@ -157,7 +171,7 @@
                         <legend>Second file:</legend>
                         <div class="controlgroup-vertical">
                             <table style="width: 100%">
-                                <tr  class="file-name">
+                                <tr class="file-name">
                                     <td class="left"><span>File name:</span></td>
                                     <td class="right" id="second-file-name"></td>
                                 </tr>
@@ -185,7 +199,7 @@
         </table>
 
     </div>
-<br/>
+    <br/>
 
     <div id="grid-table-wrapper">
         <table id="grid-table"></table>

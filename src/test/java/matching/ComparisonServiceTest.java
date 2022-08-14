@@ -1,5 +1,7 @@
 package matching;
 
+import recon.matching.AmountMatcher;
+import recon.matching.NarrativeMatcher;
 import recon.matching.SimilarityMatchingStrategy;
 import recon.matching.SimpleIdAndReferenceMatchingStrategy;
 import recon.model.Transaction;
@@ -8,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import recon.matching.ComparisonResult;
 import recon.web.ComparisonService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,7 +24,7 @@ class ComparisonServiceTest {
 
     @BeforeEach
     void setUp() {
-        comparisonService = new ComparisonService(new SimpleIdAndReferenceMatchingStrategy(), new SimilarityMatchingStrategy());
+        comparisonService = new ComparisonService(new SimpleIdAndReferenceMatchingStrategy(), new SimilarityMatchingStrategy(Arrays.asList(new AmountMatcher(), new NarrativeMatcher())));
     }
 
     @Test
@@ -34,7 +38,7 @@ class ComparisonServiceTest {
         right.add(Transaction.fromLine("Card Campaign,2014-01-12 04:43:34,-15000,*DARY SOUTHRING           GABORONE      BW,DEDUCT,0384012170157788,1,P_NzIzNDk2ODZfMTM4NTY1OTU3My4yMDQ1"));
         right.add(Transaction.fromLine("Card Campaign,2014-01-12 07:50:22,-20000,*BDF THEBEPHATSWA         MOLEPOLOLE    BW,DEDUCT,0304012282224503,1,P_NzUyODU4ODJfMTM4NjMyODY5Ni4wNzky"));
 
-        final ComparisonResult compare = comparisonService.compare("f1", left, "f2", right);
+        final ComparisonResult compare = comparisonService.compare("f1", left, "f2", right, Arrays.asList("narrative", "amount"));
         assertNotNull(compare);
         assertEquals(2, compare.getFirstSummary().getMatched());
         assertEquals(2, compare.getSecondSummary().getMatched());
@@ -59,7 +63,7 @@ class ComparisonServiceTest {
         right.add(Transaction.fromLine("Card Campaign,2014-01-12 07:50:22,-20000,*BDF THEBEPHATSWA         MOLEPOLOLE    BW,DEDUCT,0304012282224503,1,P_NzUyODU4ODJfMTM4NjMyODY5Ni4wNzky"));
         right.add(Transaction.fromLine("Card Campaign,2014-01-12 07:50:22,-20001,*MOGODI ENGEN            GABORONE       BW,DEDUCT,0111111111111111,1,P_NzUyODU4ODJfMTM4NjMyODY5Ni4wNzky"));
 
-        final ComparisonResult compare = comparisonService.compare("f1", left, "f2", right);
+        final ComparisonResult compare = comparisonService.compare("f1", left, "f2", right, Arrays.asList("narrative", "amount"));
         assertNotNull(compare);
         assertEquals(2, compare.getFirstSummary().getMatched());
         assertEquals(2, compare.getSecondSummary().getMatched());

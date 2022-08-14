@@ -6,33 +6,23 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 import recon.matching.ComparisonResult;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class FileUploadControllerTest {
+class ComparisonControllerTest {
 
     ObjectMapper mapper = new ObjectMapper();
 
@@ -40,7 +30,7 @@ class FileUploadControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void handleFileUpload() throws Exception {
+    void handleComparison() throws Exception {
 
         byte[] firstFileBytes = Files.readAllBytes(Paths.get(this.getClass().getClassLoader().getResource("c1.csv").toURI()));;
         byte[] secondFileBytes = Files.readAllBytes(Paths.get(this.getClass().getClassLoader().getResource("p1.csv").toURI()));;
@@ -49,7 +39,10 @@ class FileUploadControllerTest {
 
         final MvcResult mvcResult = mockMvc.perform(multipart("/compare")
                         .file(firstFile)
-                        .file(secondFile))
+                        .file(secondFile)
+                .param("similarity-fields", "narrative, amount")
+                )
+
                 .andExpect(status().is(200)).andReturn();
         final String contentAsString = mvcResult.getResponse().getContentAsString();
         final ComparisonResult comparisonResult = mapper.readValue(contentAsString, ComparisonResult.class);
