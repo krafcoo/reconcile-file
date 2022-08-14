@@ -6,7 +6,25 @@ function initializeCheckboxes() {
 }
 
 $(window).on('load', function() {
-    initializeCheckboxes();
+    $.get("/field-matchers", function (data, ) {
+        data.forEach(function (obj) {
+            $('#container').append(
+                $(document.createElement('input')).prop({
+                    id: obj.id,
+                    value: obj.id,
+                    name: obj.description,
+                    type: 'checkbox',
+                    checked: true
+                })
+            ).append(
+                $(document.createElement('label')).prop({
+                    for: obj.id
+                }).html(obj.description)
+            );
+        });
+        initializeCheckboxes();
+
+    });
 });
 
 function compareResult(response) {
@@ -136,25 +154,10 @@ $(document).ready(function () {
             alert("Please select a file.");
         }
     });
-    $.get("/field-matchers", function (data) {
-        data.forEach(function (obj) {
-            $('#container').append(
-                $(document.createElement('input')).prop({
-                    id: obj.id,
-                    value: obj.id,
-                    name: obj.description,
-                    type: 'checkbox',
-                    checked: true
-                })
-            ).append(
-                $(document.createElement('label')).prop({
-                    for: obj.id
-                }).html(obj.description)
-            );
-        });
-    });
-});
 
+
+
+});
 
 $(function () {
     $(".controlgroup-vertical").controlgroup({
