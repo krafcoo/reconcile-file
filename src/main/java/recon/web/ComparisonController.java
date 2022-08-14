@@ -1,6 +1,5 @@
 package recon.web;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import recon.matching.ComparisonResult;
+import recon.comparison.ComparisonResult;
+import recon.comparison.ComparisonService;
 import recon.matching.TransactionFieldMatcher;
 import recon.model.Transaction;
 import recon.model.UnparsableTransactionLineException;
@@ -32,13 +32,25 @@ public class ComparisonController {
     @PostMapping("/compare")
     public ComparisonResult handleFileUpload(@RequestParam("firstFile") MultipartFile firstFile,
                                              @RequestParam("secondFile") MultipartFile secondFile,
-                                             @RequestParam("similarity-fields") List<String> similarityFields) throws IOException {
+                                             @RequestParam("similarity-fields") List<String> similarityFields) throws IncorrectInputFilesException, ComparisonException {
+        final List<Transaction> transactions1;
+        final List<Transaction> transactions2;
+        try {
+            transactions1 = parse(firstFile);
+            transactions2 = parse(secondFile);
+        } catch (Exception e) {
+            throw new IncorrectInputFilesException(e);
+        }
+        if (transactions1.isEmpty() && transactions2.isEmpty()) {
+            throw new IncorrectInputFilesException("Input is empty");
+        }
+        try {
+            final ComparisonResult compare = comparisonService.compare(firstFile.getOriginalFilename(), transactions1, secondFile.getOriginalFilename(), transactions2, similarityFields);
+            return compare;
+        }catch (Exception e) {
+            throw new ComparisonException(e);
+        }
 
-        final List<Transaction> transactions1 = parse(firstFile);
-        final List<Transaction> transactions2 = parse(secondFile);
-
-        final ComparisonResult compare = comparisonService.compare(firstFile.getOriginalFilename(), transactions1, secondFile.getOriginalFilename(), transactions2, similarityFields);
-        return compare;
     }
 
     public List<Transaction> parse(MultipartFile file) throws IOException {

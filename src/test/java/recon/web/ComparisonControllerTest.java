@@ -10,7 +10,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import recon.matching.ComparisonResult;
+import recon.comparison.ComparisonResult;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

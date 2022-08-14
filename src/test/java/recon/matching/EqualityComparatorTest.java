@@ -1,6 +1,7 @@
 package recon.matching;
 
 import org.junit.jupiter.api.Test;
+import recon.comparison.EqualityComparator;
 import recon.model.Transaction;
 
 import java.util.LinkedList;
@@ -8,9 +9,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SimpleIdAndReferenceMatchingStrategyTest {
+class EqualityComparatorTest {
 
-    SimpleIdAndReferenceMatchingStrategy matchingStrategy = new SimpleIdAndReferenceMatchingStrategy();
+    EqualityComparator matchingStrategy = new EqualityComparator();
     @Test
     void compare_identical() {
         List<Transaction> left = new LinkedList<>();

@@ -2,15 +2,14 @@ package matching;
 
 import recon.matching.AmountMatcher;
 import recon.matching.NarrativeMatcher;
-import recon.matching.SimilarityMatchingStrategy;
-import recon.matching.SimpleIdAndReferenceMatchingStrategy;
+import recon.comparison.SimilarityComparator;
+import recon.comparison.EqualityComparator;
 import recon.model.Transaction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import recon.matching.ComparisonResult;
-import recon.web.ComparisonService;
+import recon.comparison.ComparisonResult;
+import recon.comparison.ComparisonService;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +23,7 @@ class ComparisonServiceTest {
 
     @BeforeEach
     void setUp() {
-        comparisonService = new ComparisonService(new SimpleIdAndReferenceMatchingStrategy(), new SimilarityMatchingStrategy(Arrays.asList(new AmountMatcher(), new NarrativeMatcher())));
+        comparisonService = new ComparisonService(new EqualityComparator(), new SimilarityComparator(Arrays.asList(new AmountMatcher(), new NarrativeMatcher())));
     }
 
     @Test

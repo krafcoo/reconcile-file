@@ -1,12 +1,12 @@
-package recon.web;
+package recon.comparison;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import recon.matching.ComparisonResult;
-import recon.matching.FileComparisonSummary;
+import recon.comparison.ComparisonResult;
+import recon.comparison.FileComparisonSummary;
 import recon.matching.MatchingResult;
-import recon.matching.SimilarityMatchingStrategy;
-import recon.matching.SimpleIdAndReferenceMatchingStrategy;
+import recon.comparison.SimilarityComparator;
+import recon.comparison.EqualityComparator;
 import recon.model.Transaction;
 
 import java.util.List;
@@ -14,13 +14,13 @@ import java.util.List;
 @Service
 public class ComparisonService {
 
-    private final SimpleIdAndReferenceMatchingStrategy identicalMatching;
-    private final SimilarityMatchingStrategy similarityMatchingStrategy;
+    private final EqualityComparator identicalMatching;
+    private final SimilarityComparator similarityComparator;
 
     @Autowired
-    public ComparisonService(SimpleIdAndReferenceMatchingStrategy identicalMatching, SimilarityMatchingStrategy similarityMatchingStrategy) {
+    public ComparisonService(EqualityComparator identicalMatching, SimilarityComparator similarityComparator) {
         this.identicalMatching = identicalMatching;
-        this.similarityMatchingStrategy = similarityMatchingStrategy;
+        this.similarityComparator = similarityComparator;
     }
 
     public ComparisonResult compare(String firstFileName,
@@ -29,7 +29,7 @@ public class ComparisonService {
                                     List<Transaction> secondTxns,
                                     List<String> similarityFields) {
         final MatchingResult equalityResult = identicalMatching.compare(firstTxns, secondTxns);
-        final MatchingResult similarityResult = similarityMatchingStrategy.compare(equalityResult.getNotMatched1(), equalityResult.getNotMatched2(), similarityFields);
+        final MatchingResult similarityResult = similarityComparator.compare(equalityResult.getNotMatched1(), equalityResult.getNotMatched2(), similarityFields);
 
         final FileComparisonSummary fileComparisonSummary1 = FileComparisonSummary.builder()
                 .fileName(firstFileName)

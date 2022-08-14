@@ -1,6 +1,7 @@
-package recon.matching;
+package recon.comparison;
 
 import org.springframework.stereotype.Component;
+import recon.matching.MatchingResult;
 import recon.model.Transaction;
 
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
-public class SimpleIdAndReferenceMatchingStrategy implements MatchingStrategy {
+public class EqualityComparator {
 
     public MatchingResult compare(List<Transaction> transactionsFirst, List<Transaction> transactionsSecond) {
         final Map<String,Transaction> fileFirst = new HashMap<>();

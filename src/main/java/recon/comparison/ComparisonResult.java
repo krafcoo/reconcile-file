@@ -1,4 +1,4 @@
-package recon.matching;
+package recon.comparison;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

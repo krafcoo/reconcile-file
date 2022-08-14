@@ -115,11 +115,13 @@ $(document).ready(function () {
                 success: function (response) {
                     if (response != 0) {
                         compareResult(response);
-
                     } else {
                         alert('file not uploaded');
                     }
                 },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
             });
         } else {
             alert("Please select a file.");

@@ -3,6 +3,7 @@ package recon.matching;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import recon.comparison.TxnPair;
 import recon.model.Transaction;
 
 import java.util.List;
