@@ -1,4 +1,13 @@
 var alreadyLoaded = false;
+function initializeCheckboxes() {
+    $("#container > input").checkboxradio({
+        icon: false
+    });
+}
+
+$(window).on('load', function() {
+    initializeCheckboxes();
+});
 
 function compareResult(response) {
     $("#first-file-name").text(response.firstSummary.fileName)
@@ -144,16 +153,8 @@ $(document).ready(function () {
             );
         });
     });
-
-
-
 });
 
-$(window).on('load', function() {
-    $("#container > input").checkboxradio({
-        icon: false
-    });
-});
 
 $(function () {
     $(".controlgroup-vertical").controlgroup({
