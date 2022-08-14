@@ -1,10 +1,10 @@
 package recon.matching;
 
-import org.springframework.stereotype.Component;
-import recon.model.Transaction;
 import net.ricecode.similarity.JaroWinklerStrategy;
 import net.ricecode.similarity.SimilarityStrategy;
 import net.ricecode.similarity.StringSimilarityServiceImpl;
+import org.springframework.stereotype.Component;
+import recon.model.Transaction;
 
 import java.util.HashSet;
 import java.util.LinkedList;

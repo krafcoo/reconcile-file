@@ -1,13 +1,13 @@
 package recon.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import recon.matching.ComparisonResult;
 import recon.matching.FileComparisonSummary;
 import recon.matching.MatchingResult;
 import recon.matching.SimilarityMatchingStrategy;
 import recon.matching.SimpleIdAndReferenceMatchingStrategy;
 import recon.model.Transaction;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
