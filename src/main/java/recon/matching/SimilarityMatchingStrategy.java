@@ -21,25 +21,25 @@ public class SimilarityMatchingStrategy implements MatchingStrategy {
         service = new StringSimilarityServiceImpl(strategy);
     }
 
-    public MatchingResult compare(List<Transaction> transactions1, List<Transaction> transactions2) {
+    public MatchingResult compare(List<Transaction> txnsFirst, List<Transaction> txnsSecond) {
         final Set<TxnPair> similar1 = new HashSet<>();
         final Set<TxnPair> similar2 = new HashSet<>();
         final LinkedList<Transaction> notMatched1 = new LinkedList<>();
         final LinkedList<Transaction> notMatched2 = new LinkedList<>();
-        notMatched1.addAll(transactions1);
-        notMatched2.addAll(transactions2);
-        for (Transaction transaction1 : transactions1) {
-            for (Transaction transaction2 : transactions2) {
-                final boolean narrativeSimilarity = service.score(transaction1.getNarrative(), transaction2.getNarrative()) > 0.9;
-                final int amount1 = transaction1.getTransactionAmountInt();
-                final int amount2 = transaction2.getTransactionAmountInt();
+        notMatched1.addAll(txnsFirst);
+        notMatched2.addAll(txnsSecond);
+        for (Transaction transactionFirst : txnsFirst) {
+            for (Transaction transactionSecond : txnsSecond) {
+                final boolean narrativeSimilarity = service.score(transactionFirst.getNarrative(), transactionSecond.getNarrative()) > 0.9;
+                final int amount1 = transactionFirst.getTransactionAmountInt();
+                final int amount2 = transactionSecond.getTransactionAmountInt();
                 final int difference = amount1 - amount2;
                 final boolean amountSimilarity = Math.abs(difference) < 10;
                 if (narrativeSimilarity && amountSimilarity) {
-                    similar1.add(new TxnPair(transaction1, transaction2));
-                    similar2.add(new TxnPair(transaction2, transaction1));
-                    notMatched1.remove(transaction1);
-                    notMatched2.remove(transaction2);
+                    similar1.add(new TxnPair(transactionFirst, transactionSecond));
+                    similar2.add(new TxnPair(transactionSecond, transactionFirst));
+                    notMatched1.remove(transactionFirst);
+                    notMatched2.remove(transactionSecond);
                 }
             }
         }

@@ -1,0 +1,291 @@
+{
+  "fileComparisonSummary1": {
+    "fileName": "file1",
+    "total": 306,
+    "matched": 294,
+    "similar": 4,
+    "unmatchedRecords": [
+      {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 16:18:25",
+        "amount": "-35000",
+        "narrative": "*PALAPYE ENGEN            PALAPYE       BW",
+        "description": "DEDUCT",
+        "id": "0384012587059924",
+        "type": "1",
+        "walletReference": "P_NzI5MTc3NzdfMTM4MDUyOTMyOS4wNjI4",
+        "transactionAmountInt": -35000
+      },
+      {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 11:15:11",
+        "amount": "-2205",
+        "narrative": "548817 PAY-LESS (PTY) LTD BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "0164012261115601",
+        "type": "0",
+        "walletReference": "P_NzIxMzExMDZfMTM4NjMyNzk1MS4wNDE2",
+        "transactionAmountInt": -2205
+      },
+      {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 15:03:05",
+        "amount": "-6984",
+        "narrative": "128552 P G TIMBERS MAUN   BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "0084012397854064",
+        "type": "0",
+        "walletReference": "P_Nzc1MDA3MTFfMTM4MTQ4MjU0MC4zMTc2",
+        "transactionAmountInt": -6984
+      },
+      {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 16:25:37",
+        "amount": "-20954",
+        "narrative": "ENGEN WIRED              GABARONE       BW",
+        "description": "DEDUCT",
+        "id": "0528738473949230",
+        "type": "1",
+        "walletReference": "P_NzUI4398F03ghjffMOIF8340Mi45NTc4",
+        "transactionAmountInt": -20954
+      }
+    ]
+  },
+  "fileComparisonSummary2": {
+    "fileName": "file2",
+    "total": 306,
+    "matched": 294,
+    "similar": 4,
+    "unmatchedRecords": [
+      {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 20:55:42",
+        "amount": "-100000",
+        "narrative": "DINOS SHOPPERS            BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "0584012609420666",
+        "type": "1",
+        "walletReference": "P_NzI5NjY5NDlfMTM4MTc1MDM1MS4zODg2",
+        "transactionAmountInt": -100000
+      },
+      {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 14:21:22",
+        "amount": "-5466",
+        "narrative": "*RED SQUARE SZ",
+        "description": "DEDUCT",
+        "id": "8948594584958495",
+        "type": "0",
+        "walletReference": "P_NzIxMzExMDZfMTM4NjMyNzk1MS4wNDE2",
+        "transactionAmountInt": -5466
+      },
+      {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 11:55:43",
+        "amount": "-37582",
+        "narrative": "*JDOREY STNGER            GABORE        BW",
+        "description": "DEDUCT",
+        "id": "0475845786555522",
+        "type": "1",
+        "walletReference": "P_NzI5MTc3u89FITTldfi7349yOS4wNjI4",
+        "transactionAmountInt": -37582
+      }
+    ]
+  },
+  "unmatchedRecords": [
+    {
+      "a": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 14:16:24",
+        "amount": "-10000",
+        "narrative": "TRUWORTHS                 BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "0384012369849844",
+        "type": "1",
+        "walletReference": "P_NzI3NDUxNDRfMTM4NDM1MDQ5NC4yMTUx",
+        "transactionAmountInt": -10000
+      },
+      "b": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 14:16:24",
+        "amount": "-10000",
+        "narrative": "TRUWORTHS                 BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "4049540590428544",
+        "type": "1",
+        "walletReference": "P_NzI3NDUxNDRfMTM4NDM1MDQ5NC4yMTUx",
+        "transactionAmountInt": -10000
+      }
+    },
+    {
+      "a": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 08:22:58",
+        "amount": "-6220",
+        "narrative": "Choppies Superst102631    Lobatse       BW",
+        "description": "DEDUCT",
+        "id": "0284012303585533",
+        "type": "0",
+        "walletReference": "P_NzI5NzYzMjlfMTM3ODMwMDI2Ny40MzUy",
+        "transactionAmountInt": -6220
+      },
+      "b": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 08:22:58",
+        "amount": "-6220",
+        "narrative": "Choppies Superst102631    Lobatse       BW",
+        "description": "DEDUCT",
+        "id": "0284349965585533",
+        "type": "0",
+        "walletReference": "P_NzI5NzYzMjlfMTM3ODMwMDI2Ny40MzUy",
+        "transactionAmountInt": -6220
+      }
+    },
+    {
+      "a": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-13 01:38:56",
+        "amount": "-5000",
+        "narrative": "SOUTH RINGX                JOHANNESBURG  BW",
+        "description": "DEDUCT",
+        "id": "046401277936028",
+        "type": "1",
+        "walletReference": "P_NzI3NTg0NTdfMTM4NjY2NDExNy4zODA",
+        "transactionAmountInt": -5000
+      },
+      "b": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-13 01:38:56",
+        "amount": "-5001",
+        "narrative": "SOUTH RING                JOHANNESBURG  BW",
+        "description": "DEDUCT",
+        "id": "0464012779360288",
+        "type": "1",
+        "walletReference": "P_NzI3NTg0NTdfMTM4NjY2NDExNy4zODAd",
+        "transactionAmountInt": -5001
+      }
+    },
+    {
+      "a": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 15:55:13",
+        "amount": "-50000",
+        "narrative": "MAHALAPYE BRANCH          BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "0478928932843767",
+        "type": "1",
+        "walletReference": "P_NzQ0NDExNzFfMTM4NzI3NDgxMC42OTc5",
+        "transactionAmountInt": -50000
+      },
+      "b": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 15:55:13",
+        "amount": "-50000",
+        "narrative": "MAHALAPYE BRANCH          BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "0384012429135767",
+        "type": "1",
+        "walletReference": "P_NzQ0NDExNzFfMTM4NzI3NDgxMC42OTc5",
+        "transactionAmountInt": -50000
+      }
+    },
+    {
+      "a": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 16:18:25",
+        "amount": "-35000",
+        "narrative": "*PALAPYE ENGEN            PALAPYE       BW",
+        "description": "DEDUCT",
+        "id": "0384012587059924",
+        "type": "1",
+        "walletReference": "P_NzI5MTc3NzdfMTM4MDUyOTMyOS4wNjI4",
+        "transactionAmountInt": -35000
+      },
+      "b": null
+    },
+    {
+      "a": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 11:15:11",
+        "amount": "-2205",
+        "narrative": "548817 PAY-LESS (PTY) LTD BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "0164012261115601",
+        "type": "0",
+        "walletReference": "P_NzIxMzExMDZfMTM4NjMyNzk1MS4wNDE2",
+        "transactionAmountInt": -2205
+      },
+      "b": null
+    },
+    {
+      "a": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 15:03:05",
+        "amount": "-6984",
+        "narrative": "128552 P G TIMBERS MAUN   BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "0084012397854064",
+        "type": "0",
+        "walletReference": "P_Nzc1MDA3MTFfMTM4MTQ4MjU0MC4zMTc2",
+        "transactionAmountInt": -6984
+      },
+      "b": null
+    },
+    {
+      "a": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 16:25:37",
+        "amount": "-20954",
+        "narrative": "ENGEN WIRED              GABARONE       BW",
+        "description": "DEDUCT",
+        "id": "0528738473949230",
+        "type": "1",
+        "walletReference": "P_NzUI4398F03ghjffMOIF8340Mi45NTc4",
+        "transactionAmountInt": -20954
+      },
+      "b": null
+    },
+    {
+      "a": null,
+      "b": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 20:55:42",
+        "amount": "-100000",
+        "narrative": "DINOS SHOPPERS            BOTSWANA      BW",
+        "description": "DEDUCT",
+        "id": "0584012609420666",
+        "type": "1",
+        "walletReference": "P_NzI5NjY5NDlfMTM4MTc1MDM1MS4zODg2",
+        "transactionAmountInt": -100000
+      }
+    },
+    {
+      "a": null,
+      "b": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 14:21:22",
+        "amount": "-5466",
+        "narrative": "*RED SQUARE SZ",
+        "description": "DEDUCT",
+        "id": "8948594584958495",
+        "type": "0",
+        "walletReference": "P_NzIxMzExMDZfMTM4NjMyNzk1MS4wNDE2",
+        "transactionAmountInt": -5466
+      }
+    },
+    {
+      "a": null,
+      "b": {
+        "profileName": "Card Campaign",
+        "date": "2014-01-12 11:55:43",
+        "amount": "-37582",
+        "narrative": "*JDOREY STNGER            GABORE        BW",
+        "description": "DEDUCT",
+        "id": "0475845786555522",
+        "type": "1",
+        "walletReference": "P_NzI5MTc3u89FITTldfi7349yOS4wNjI4",
+        "transactionAmountInt": -37582
+      }
+    }
+  ]
+}
