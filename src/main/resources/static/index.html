@@ -1,10 +1,197 @@
-<!DOCTYPE HTML>
 <html>
-<head> 
-    <title>Getting Started: Serving Web Content</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+    <title>
+        Compare reconciliation files
+    </title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="jquery-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="ui.jqgrid.css"/>
+    <style>
+        fieldset {
+            border-radius: 3px;
+            line-height: 0.5;
+            border-color: #e9e9e9;
+        }
+
+        legend {
+            font-family: Arial;
+            color: blue;
+            font-weight: bold;
+        }
+
+        td {
+            font-family: Arial;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            font-family: Arial;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            width: 100%;
+        }
+
+        .left {
+            font-family: Arial;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .file-name {
+            font-family: Arial;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: #e9e9e9;
+            border-radius: 3px;
+            border:1px solid #c5c5c5;
+            outline: thin solid #c5c5c5
+        }
+
+        .right {
+            font-family: Arial;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+
+        .ui-controlgroup-vertical {
+            width: 150px;
+            border-radius: 3px;
+        }
+
+        .ui-jqgrid-title {
+            font-size: 16px;
+            color: blue;
+        }
+
+        .ui-controlgroup.ui-controlgroup-vertical > .ui-controlgroup-span {
+            text-align: center;
+        }
+        .controlgroup-vertical {
+            width: 100%
+        }
+        #summary {
+            display: none;
+        }
+    </style>
+
+    <script type="module" src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <script src="jquery.twbsPagination.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.13.5/js/jquery.jqgrid.min.js"></script>
+
+    <meta charset="utf-8"/>
 </head>
 <body>
-    <p>Get your greeting <a href="/greeting">here</a></p>
+
+<div>
+
+    <div id="form" style="width: 80%; margin: 0 auto; display: block;">
+        <!--        <form method="post" action="/" enctype="multipart/form-data" id="uploadForm" style="border: solid">-->
+        <fieldset>
+            <legend>Select files to compare</legend>
+            <div class="controlgroup-vertical" style="width:100%">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>Select first file:</td>
+                        <td><input type="file" id="firstFile" name="firstFile" value="p1.csv"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Select second file:</td>
+                        <td><input type="file" id="secondFile" name="secondFile" value="c1.csv"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right"><input type="button" value="Compare"
+                                                                         id="but_upload"></td>
+                    </tr>
+                </table>
+            </div>
+        </fieldset>
+        <!--        </form>-->
+    </div>
+<br/>
+
+    <div id="summary">
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 50%">
+                    <fieldset>
+                        <legend>First file:</legend>
+                        <div class="controlgroup-vertical">
+                            <table style="width: 100%">
+                                <tr class="file-name">
+                                    <td class="left">File name:</td>
+                                    <td class="right" id="first-file-name"></td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Total:</td>
+                                    <td class="right" id="first-total"></td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Matched:</td>
+                                    <td class="right" id="first-matched"></td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Similar:</td>
+                                    <td class="right" id="first-similar"></td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Not matched:</td>
+                                    <td class="right" id="first-unmatched"></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </fieldset>
+                </td>
+                <td style="width: 50%">
+                    <fieldset>
+                        <legend>Second file:</legend>
+                        <div class="controlgroup-vertical">
+                            <table style="width: 100%">
+                                <tr  class="file-name">
+                                    <td class="left"><span>File name:</span></td>
+                                    <td class="right" id="second-file-name"></td>
+                                </tr>
+                                <tr>
+                                    <td class="left"><span>Total:</span></td>
+                                    <td class="right" id="second-total"></td>
+                                </tr>
+                                <tr>
+                                    <td class="left"><span>Matched:</span></td>
+                                    <td class="right" id="second-matched"></td>
+                                </tr>
+                                <tr>
+                                    <td class="left"><span>Similar:</span></td>
+                                    <td class="right" id="second-similar"></td>
+                                </tr>
+                                <tr>
+                                    <td class="left"><span>Not matched:</span></td>
+                                    <td class="right" id="second-unmatched"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+<br/>
+
+    <div id="grid-table-wrapper">
+        <table id="grid-table"></table>
+        <div id="grid-pager"></div>
+    </div>
+</div>
+
 </body>
 </html>
