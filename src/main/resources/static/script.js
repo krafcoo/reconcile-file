@@ -154,9 +154,6 @@ $(document).ready(function () {
             alert("Please select a file.");
         }
     });
-
-
-
 });
 
 $(function () {

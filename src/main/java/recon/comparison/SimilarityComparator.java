@@ -38,21 +38,23 @@ public class SimilarityComparator {
         final LinkedList<Transaction> notMatched2 = new LinkedList<>();
         notMatched1.addAll(txnsFirst);
         notMatched2.addAll(txnsSecond);
-        for (Transaction transactionFirst : txnsFirst) {
-            for (Transaction transactionSecond : txnsSecond) {
-                boolean matched = true;
-                for (String key : similarityFields) {
-                    final TransactionFieldMatcher transactionFieldMatcher = matchers.get(key);
-                    if (!transactionFieldMatcher.match(transactionFirst, transactionSecond)) {
-                        matched= false;
-                        break;
+        if (!similarityFields.isEmpty()) {
+            for (Transaction transactionFirst : txnsFirst) {
+                for (Transaction transactionSecond : txnsSecond) {
+                    boolean matched = true;
+                    for (String key : similarityFields) {
+                        final TransactionFieldMatcher transactionFieldMatcher = matchers.get(key);
+                        if (!transactionFieldMatcher.match(transactionFirst, transactionSecond)) {
+                            matched = false;
+                            break;
+                        }
                     }
-                }
-                if (matched) {
-                    similar1.add(new TxnPair(transactionFirst, transactionSecond));
-                    similar2.add(new TxnPair(transactionSecond, transactionFirst));
-                    notMatched1.remove(transactionFirst);
-                    notMatched2.remove(transactionSecond);
+                    if (matched) {
+                        similar1.add(new TxnPair(transactionFirst, transactionSecond));
+                        similar2.add(new TxnPair(transactionSecond, transactionFirst));
+                        notMatched1.remove(transactionFirst);
+                        notMatched2.remove(transactionSecond);
+                    }
                 }
             }
         }

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SimilarityMatchingStrategyTest {
+class SimilarityComparatorTest {
 
     SimilarityComparator similarityComparator = new SimilarityComparator(Arrays.asList(new NarrativeMatcher(), new AmountMatcher()));
 
@@ -23,6 +23,17 @@ class SimilarityMatchingStrategyTest {
         assertNotNull(matchingResult);
         assertEquals(1, matchingResult.getMatched1().size());
         assertEquals(1, matchingResult.getMatched2().size());
+    }
+
+    @Test
+    void compare_similar_no_fields() {
+        final MatchingResult matchingResult = similarityComparator.compare(
+                Arrays.asList(Transaction.builder().narrative("this is simple test").amount("1000").build()),
+                Arrays.asList(Transaction.builder().narrative("this is simple text").amount("1000").build()),
+                Arrays.asList());
+        assertNotNull(matchingResult);
+        assertEquals(0, matchingResult.getMatched1().size());
+        assertEquals(0, matchingResult.getMatched2().size());
     }
 
     @Test
